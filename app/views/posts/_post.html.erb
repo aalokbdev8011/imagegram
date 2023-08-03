@@ -1,12 +1,18 @@
 <div id="<%= dom_id post %>">
   <p>
+    <%= image_tag(post.image) %>
+  </p>
+
+  <p>
     <strong>Caption:</strong>
     <%= post.caption %>
   </p>
 
   <p>
-    <strong>Image:</strong>
-    <%= post.image %>
+    <strong>Author:</strong>
+    <%= "#{post.user.first_name} #{post.user.last_name}" %>
   </p>
+
+  <%= render post.comments  %>
 
 </div>
