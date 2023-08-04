@@ -2,10 +2,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[show edit update destroy]
 
   def index
-    @posts = Post.left_joins(:comments).
-             select('posts.*, COUNT(comments.id) AS comments_count').
-             group('posts.id').
-             order('comments_count DESC')
+    @pagy, @posts = pagy(Post.left_joins(:comments), items: 1)
   end
 
   def show
