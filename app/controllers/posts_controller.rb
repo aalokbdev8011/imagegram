@@ -1,11 +1,12 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[show edit update destroy]
+  before_action :find_post, only: %i[show edit update destroy]
 
   def index
-    @pagy, @posts = pagy(Post.left_joins(:comments), items: 1)
+    @pagy, @posts = pagy(Post.order(:comments_count), items: 1)
   end
 
   def show
+    @comment = @post.comments.new
   end
 
   def new
@@ -20,6 +21,8 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
+        ImageConversionJob.perform_later(@post.id)
+
         format.html { redirect_to post_url(@post), notice: "Post successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -30,6 +33,8 @@ class PostsController < ApplicationController
   def update
     respond_to do |format|
       if @post.update(post_params)
+        ImageConversionJob.perform_later(@post.id)
+
         format.html { redirect_to post_url(@post), notice: "Post successfully updated." }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -47,7 +52,7 @@ class PostsController < ApplicationController
 
   private
 
-  def set_post
+  def find_post
     @post = Post.find(params[:id])
   end
 

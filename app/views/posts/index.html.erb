@@ -5,7 +5,12 @@
 <%= link_to "New post", new_post_path %>
 
 <div id="posts">
-  <%= render @posts %>
+  <% @posts.find_each do |post| %>
+    <%= render post %>
+
+    <%= render post.comments.limit(2)  %>
+    <%= link_to "Show this post", post %>
+  <% end %>
 </div>
 
 <%= render "pager", pagy: @pagy %>

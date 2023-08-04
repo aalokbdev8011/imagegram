@@ -54,6 +54,17 @@ gem 'devise'
 # pagination gem
 gem "pagy" 
 
+# This gem is a Ruby binding for the libvips image processing library.
+gem "ruby-vips"
+gem 'image_processing'
+
+# Delayed::Job (or DJ) encapsulates the common pattern of asynchronously executing longer tasks in the background.
+gem 'delayed_job_active_record'
+
+# Daemons provides an easy way to wrap existing ruby scripts
+# (for example a self-written server) to be run as a daemon and to be controlled by simple start/stop/restart commands.
+gem 'daemons'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
