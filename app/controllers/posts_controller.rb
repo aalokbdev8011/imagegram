@@ -2,11 +2,7 @@ class PostsController < ApplicationController
   before_action :find_post, only: %i[show edit update destroy]
 
   def index
-    @pagy, @posts = pagy(Post.order('comments_count desc'), items: 1)
-
-    respond_to do |format|
-      format.html
-    end
+    @pagy, @posts = pagy(Post.includes(:user, :comments).order('comments_count ASC'), items: 1)
   end
 
   def show
@@ -50,7 +46,7 @@ class PostsController < ApplicationController
     @post.destroy
 
     respond_to do |format|
-      format.html { redirect_to posts_url, status: :see_other, notice: "Post destroyed." }
+      format.html { redirect_to root_url, status: :see_other, notice: "Post destroyed." }
     end
   end
 

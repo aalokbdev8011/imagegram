@@ -4,11 +4,17 @@
   </p>
 
   <p>
+    <strong>Author:</strong>
+    <%= "#{post.user.first_name} #{post.user.last_name}" %>
+    </br>
     <strong>Caption:</strong>
     <%= post.caption %>
 
     <% if params[:action] == 'index' %>
+      </br>
+      <strong>Comments:</strong>
       <%= render post.comments.limit(2)  %>
+      </br>
       <%= link_to "Show this post", post, class: 'btn btn-primary' %>
     <% end %>
   </p>

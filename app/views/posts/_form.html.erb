@@ -14,16 +14,17 @@
   <%= form.hidden_field :user_id, value: current_user.id %>
 
   <div>
-    <%= form.label :caption, style: "display: block" %>
-    <%= form.text_field :caption %>
+    <%= form.label :caption, style: "display: block", class: "form-label" %>
+    <%= form.text_field :caption, class: "form-control" %>
   </div>
 
   <div>
-    <%= form.label :image, style: "display: block" %>
-    <%= form.file_field :image %>
+    <%= form.label :image, style: "display: block", class: "form-label" %>
+    <%= form.file_field :image, class: "form-control" %>
   </div>
+  </br>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit 'Submit', class: 'btn btn-primary' %>
   </div>
 <% end %>
