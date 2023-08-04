@@ -11,7 +11,7 @@
 
 <div class="comments">
   <h3>Comments</h3>
-  <% @post.comments.find_each do |comment| %>
+  <% @post.comments.each do |comment| %>
     <div class="comment">
       <%= render comment %>
     </div>

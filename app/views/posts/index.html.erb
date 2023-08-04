@@ -2,14 +2,14 @@
 
 <h1>Posts</h1>
 
-<%= link_to "New post", new_post_path %>
+<%= link_to "New post", new_post_path, class: 'btn btn-primary' %>
 
 <div id="posts">
-  <% @posts.find_each do |post| %>
-    <%= render post %>
+  <% @posts.each do |post| %>
+    <div class="container-fluid">
 
-    <%= render post.comments.limit(2)  %>
-    <%= link_to "Show this post", post %>
+      <%= render post %>
+    </div>
   <% end %>
 </div>
 
