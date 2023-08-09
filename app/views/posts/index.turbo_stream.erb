@@ -1,11 +1,13 @@
-<%= turbo_stream_action_tag(
-  "append",
-  target: "posts",
-  template: %(#{render @posts}) 
-) %>
+<%= turbo_frame_tag "page_handler" do %>
+  <%= turbo_stream_action_tag(
+    "append",
+    target: "posts",
+    template: %(#{render @posts}) 
+  ) %>
 
-<%= turbo_stream_action_tag(
-  "replace",
-  target: "pager",
-  template: %(#{render "pager", pagy: @pagy})
-) %>
+  <%= turbo_stream_action_tag(
+    "replace",
+    target: "pager",
+    template: %(#{render "pager", pagy: @pagy})
+  ) %>
+<% end %>

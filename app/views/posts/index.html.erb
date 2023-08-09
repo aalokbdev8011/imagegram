@@ -4,13 +4,11 @@
 
 <%= link_to "New post", new_post_path, class: 'btn btn-primary' %>
 
-<div id="posts">
-  <% @posts.each do |post| %>
-    <div class="container-fluid">
+<%= turbo_frame_tag "page_handler" %>
 
-      <%= render post %>
-    </div>
-  <% end %>
+<div id="posts">
+  <%= render @posts %>
+  <%= turbo_stream_from "posts" %>
 </div>
 
 <%= render "pager", pagy: @pagy %>
